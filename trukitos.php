@@ -6,78 +6,106 @@ Plugin Name: Trukitos
 // Hook into the 'wp_footer' action to modify the page content
 add_filter('the_content', 'add_data_aos_attribute');
 
-function add_data_aos_attribute($content) {
-
-  $content=str_replace("<figure","<p data-clave='prefix'",$content);
-  $content=str_replace("</figure>","</p><!--marker-->",$content);
-  // Load the HTML of the post content into a DOMDocument object
-  $doc = new DOMDocument();
-  $doc->loadHTML($content);
-  
-  // Get all the divs in the post content
-  $divs = $doc->getElementsByTagName('*');
-  
-  // Loop through each div and check for the "eureka" class
-  foreach ($divs as $div) {
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' fade-up ') !== false) $div->setAttribute('data-aos', 'fade-up');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' fade-down ') !== false) $div->setAttribute('data-aos', 'fade-down');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' fade-right ') !== false) $div->setAttribute('data-aos', 'fade-right');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' fade-left ') !== false) $div->setAttribute('data-aos', 'fade-left');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' fade-up-right ') !== false) $div->setAttribute('data-aos', 'fade-up-right');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' fade-up-left ') !== false) $div->setAttribute('data-aos', 'fade-up-left');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' fade-down-right ') !== false) $div->setAttribute('data-aos', 'fade-down-right');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' fade-down-left ') !== false) $div->setAttribute('data-aos', 'fade-down-left');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' flip-left ') !== false) $div->setAttribute('data-aos', 'flip-left');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' flip-right ') !== false) $div->setAttribute('data-aos', 'flip-right');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' flip-up ') !== false) $div->setAttribute('data-aos', 'flip-up');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' flip-down ') !== false) $div->setAttribute('data-aos', 'flip-down');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' zoom-in ') !== false) $div->setAttribute('data-aos', 'zoom-in');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' zoom-in-up ') !== false) $div->setAttribute('data-aos', 'zoom-in-up');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' zoom-in-right ') !== false) $div->setAttribute('data-aos', 'zoom-in-right');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' zoom-in-left ') !== false) $div->setAttribute('data-aos', 'zoom-in-left');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' zoom-in-down ') !== false) $div->setAttribute('data-aos', 'zoom-in-down');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' zoom-out ') !== false) $div->setAttribute('data-aos', 'zoom-out');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' zoom-out-up ') !== false) $div->setAttribute('data-aos', 'zoom-out-up');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' zoom-out-right ') !== false) $div->setAttribute('data-aos', 'zoom-out-right');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' zoom-out-left ') !== false) $div->setAttribute('data-aos', 'zoom-out-left');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' zoom-out-down ') !== false) $div->setAttribute('data-aos', 'zoom-out-down');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' duration-500 ') !== false) $div->setAttribute('data-aos-duration', '500');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' duration-1000 ') !== false) $div->setAttribute('data-aos-duration', '1000');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' duration-1500 ') !== false) $div->setAttribute('data-aos-duration', '1500');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' duration-2000 ') !== false) $div->setAttribute('data-aos-duration', '2000');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' duration-2500 ') !== false) $div->setAttribute('data-aos-duration', '2500');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' duration-3000 ') !== false) $div->setAttribute('data-aos-duration', '3000');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' duration-3500 ') !== false) $div->setAttribute('data-aos-duration', '3500');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' duration-4000 ') !== false) $div->setAttribute('data-aos-duration', '4000');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' linear ') !== false) $div->setAttribute('data-aos-easing', 'linear');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' ease ') !== false) $div->setAttribute('data-aos-easing', 'ease');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' ease-in ') !== false) $div->setAttribute('data-aos-easing', 'ease-in');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' ease-out ') !== false) $div->setAttribute('data-aos-easing', 'ease-out');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' ease-in-out ') !== false) $div->setAttribute('data-aos-easing', 'ease-in-out');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' ease-in-back ') !== false) $div->setAttribute('data-aos-easing', 'ease-in-back');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' ease-out-back ') !== false) $div->setAttribute('data-aos-easing', 'ease-out-back');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' ease-in-out-back ') !== false) $div->setAttribute('data-aos-easing', 'ease-in-out-back');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' ease-in-sine ') !== false) $div->setAttribute('data-aos-easing', 'ease-in-sine');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' ease-out-sine ') !== false) $div->setAttribute('data-aos-easing', 'ease-out-sine');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' ease-in-out-sine ') !== false) $div->setAttribute('data-aos-easing', 'ease-in-out-sine');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' ease-in-quad ') !== false) $div->setAttribute('data-aos-easing', 'ease-in-quad');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' ease-out-quad ') !== false) $div->setAttribute('data-aos-easing', 'ease-out-quad');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' ease-in-out-quad ') !== false) $div->setAttribute('data-aos-easing', 'ease-in-out-quad');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' ease-in-cubic ') !== false) $div->setAttribute('data-aos-easing', 'ease-in-cubic');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' ease-out-cubic ') !== false) $div->setAttribute('data-aos-easing', 'ease-out-cubic');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' ease-in-out-cubic ') !== false) $div->setAttribute('data-aos-easing', 'ease-in-out-cubic');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' ease-in-quart ') !== false) $div->setAttribute('data-aos-easing', 'ease-in-quart');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' ease-out-quart ') !== false) $div->setAttribute('data-aos-easing', 'ease-out-quart');
-    if ($div->hasAttribute('class') && strpos(" ".$div->getAttribute('class')." ", ' ease-in-out-quart ') !== false) $div->setAttribute('data-aos-easing', 'ease-in-out-quart');
-    
+function add_attributes($content,$class){
+ 
+  $tipo="";
+  if(strpos($class,"duration")!==false) {
+    $tipo="-duration";
+    $arrayD=explode("-",$class);
+    $class=$arrayD[1];
+  }
+  if(strpos($class,"ease")!==false) {
+    $tipo="-easing";
+  }
+  $array1=explode($class,$content);
+$class_removed=remove_chars($class);
+  foreach($array1 as $clave=>$element1){
+      
+    if($clave!=0) {
+      $array2=explode(">",$array1[$clave]);
+     $array2[0]=$array2[0]." data-aos$tipo=".'"'.$class_removed.'"';
+      $array1[$clave]=implode(">",$array2);
+    }
   }
   
-  // Save the updated HTML and return it
-  $updated_content = $doc->saveHTML();
-  $content=str_replace("</p><!--marker-->","</figure>",$content);
-  $updated_content=str_replace("<p data-clave='prefix'","<figure",$updated_content);
-  return $updated_content;
+  $content=implode($class,$array1);
+  return $content;
 }
+function remove_chars($class){
+  $class=str_replace("'","",$class);
+  $class=str_replace(" ","",$class);
+  $class=str_replace('"',"",$class);
+  return $class;
+}
+function add_data_aos_attribute($content) {
+
+  //return $content;
+  $array=[
+    'fade-up'=>'fade-up',
+  'fade-down'=>'fade-down',
+  'fade-right'=>'fade-right',
+  'fade-left'=>'fade-left',
+  'fade-up-right'=>'fade-up-right',
+  'fade-up-left'=>'fade-up-left',
+  'fade-down-right'=>'fade-down-right',
+  'fade-down-left'=>'fade-down-left',
+  'flip-left'=>'flip-left',
+  'flip-right'=>'flip-right',
+  'flip-up'=>'flip-up',
+  'flip-down'=>'flip-down',
+  'zoom-in'=>'zoom-in',
+  'zoom-in-up'=>'zoom-in-up',
+  'zoom-in-right'=>'zoom-in-right',
+  'zoom-in-left'=>'zoom-in-left',
+  'zoom-in-down'=>'zoom-in-down',
+  'zoom-out'=>'zoom-out',
+  'zoom-out-up'=>'zoom-out-up',
+  'zoom-out-right'=>'zoom-out-right',
+  'zoom-out-left'=>'zoom-out-left',
+  'zoom-out-down'=>'zoom-out-down',
+  'duration-500'=>'500',
+  'duration-1000'=>'1000',
+  'duration-1500'=>'1500',
+  'duration-2000'=>'2000',
+  'duration-2500'=>'2500',
+  'duration-3000'=>'3000',
+  'duration-3500'=>'3500',
+  'duration-4000'=>'4000',
+  'linear'=>'linear',
+  'ease'=>'ease',
+  'ease-in'=>'ease-in',
+  'ease-out'=>'ease-out',
+  'ease-in-out'=>'ease-in-out',
+  'ease-in-back'=>'ease-in-back',
+  'ease-out-back'=>'ease-out-back',
+  'ease-in-out-back'=>'ease-in-out-back',
+  'ease-in-sine'=>'ease-in-sine',
+  'ease-out-sine'=>'ease-out-sine',
+  'ease-in-out-sine'=>'ease-in-out-sine',
+  'ease-in-quad'=>'ease-in-quad',
+  'ease-out-quad'=>'ease-out-quad',
+  'ease-in-out-quad'=>'ease-in-out-quad',
+  'ease-in-cubic'=>'ease-in-cubic',
+  'ease-out-cubic'=>'ease-out-cubic',
+  'ease-in-out-cubic'=>'ease-in-out-cubic',
+  'ease-in-quart'=>'ease-in-quart',
+  'ease-out-quart'=>'ease-out-quart',
+  'ease-in-out-quart'=>'ease-in-out-quart'];
+  foreach($array as $clave=>$valor){
+    
+     $class=$array[$clave];
+    if(strpos($content,'"'.$class.'"')!==false) $content=add_attributes($content,'"'.$class.'"');
+    if(strpos($content," ".$class." ")!==false) $content=add_attributes($content," ".$class." ");
+    if(strpos($content,'"'.$class." ")!==false) $content=add_attributes($content,'"'.$class." ");
+    if(strpos($content," ".$class.'"')!==false) $content=add_attributes($content," ".$class.'"');
+    if(strpos($content,"'".$class." ")!==false) $content=add_attributes($content,"'".$class." ");
+    if(strpos($content," ".$class."'")!==false) $content=add_attributes($content," ".$class."'");
+    if(strpos($content,"'".$class."'")!==false) $content=add_attributes($content,"'".$class."'");
+  }
+  return $content;
+}
+
+
 add_action("wp_head",function(){
 	?>
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
