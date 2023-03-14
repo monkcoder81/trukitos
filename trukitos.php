@@ -41,6 +41,7 @@ function add_data_aos_attribute($content) {
 
   //return $content;
   $array=[
+    'fade'=>'fade',
     'fade-up'=>'fade-up',
   'fade-down'=>'fade-down',
   'fade-right'=>'fade-right',
@@ -133,6 +134,7 @@ function vierjar(){
     return function (props) {
       var options = [
         { value: '',label: 'None' },
+        { value: 'fade',label: 'fade' },
         { value: 'fade-up',label: 'fade up' },
         { value: 'fade-down',label: 'fade down' },
         { value: 'fade-right',label: 'fade right' },
@@ -302,6 +304,3 @@ add_action("dynamic_sidebar",function(){
       if (ob_get_length() > 0) { ob_end_flush(); }
       
       });
-
-
-    
