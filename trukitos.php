@@ -94,7 +94,7 @@ function add_data_aos_attribute($content) {
   'ease-in-out-quart'=>'ease-in-out-quart'];
   foreach($array as $clave=>$valor){
     
-     $class=$array[$clave];
+     $class=$clave;
     if(strpos($content,'"'.$class.'"')!==false) $content=add_attributes($content,'"'.$class.'"');
     if(strpos($content," ".$class." ")!==false) $content=add_attributes($content," ".$class." ");
     if(strpos($content,'"'.$class." ")!==false) $content=add_attributes($content,'"'.$class." ");
